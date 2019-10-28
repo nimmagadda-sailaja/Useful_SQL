@@ -27,13 +27,14 @@ select strt_Dt+1 as ed, eddt from temp
 where ed <= eddt
 )
 select temp.strt_dt, case when start_Dt is not null then
-                                  case when end_dt - start_dt = 0 then qty
-								            else qty/(end_dt - start_Dt+1) 
-											end
-								else 0 end
+                          case when end_dt - start_dt = 0 
+			       then qty
+			       else qty/(end_dt - start_Dt+1) 
+			   end
+		    else 0 end Day_Qty
 from temp
-        left join vt_test_recs
-		on temp.strt_dt between vt_test_recs.start_dt and vt_test_recs.end_dt;
+ left join vt_test_recs
+   on temp.strt_dt between vt_test_recs.start_dt and vt_test_recs.end_dt;
 
 -- Result:
 	strt_Dt	Day_Qty
